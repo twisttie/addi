@@ -7,3 +7,16 @@ using base 10. A player manipulates tetris pieces, whose blocks are all assigned
 0 or a 1 value, so that they fall into the bar of numbers at the bottom of the screen. The 
 player may shift and rotate t This 
 bar holds the current 
+
+             _                _            _             _     
+            / /\             /\ \         /\ \          /\ \   
+           / /  \           /  \ \____   /  \ \____     \ \ \  
+          / / /\ \         / /\ \_____\ / /\ \_____\    /\ \_\ 
+         / / /\ \ \       / / /\/___  // / /\/___  /   / /\/_/ 
+        / / /  \ \ \     / / /   / / // / /   / / /   / / /    
+       / / /___/ /\ \   / / /   / / // / /   / / /   / / /     
+      / / /_____/ /\ \ / / /   / / // / /   / / /   / / /      
+     / /_________/\ \ \\ \ \__/ / / \ \ \__/ / /___/ / /__     
+    / / /_       __\ \_\\ \___\/ /   \ \___\/ //\__\/_/___\    
+    \_\___\     /____/_/ \/_____/     \/_____/ \/_________/    
+                                                               
