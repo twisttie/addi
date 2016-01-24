@@ -300,8 +300,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
     if(EVENT.FIRED) return;
     EVENT.FIRED = true;
 
-    //_bottomBar.addToState(_currentTetra.calculateValue());
-    console.log(_currentTetra.calculateValue());
+    _bottomBar.addToState(_currentTetra.calculateValue());
 
     // destroy old tetra values
     currentTetra.children.forEach(function(bit){
