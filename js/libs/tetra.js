@@ -14,7 +14,6 @@ define(['./constants'], function(constants){
       this.type = Math.floor(Math.random() * 5);
     }
 
-
     // The current rotational state of the tetra
     if(typeof state === 'number'){
       this.rotationalState = state;
@@ -49,6 +48,8 @@ define(['./constants'], function(constants){
 
     var tetraStructure = constants.BLOCKS_PER_ROW[_type];
 
+    console.log(tetraStructure);
+
     tetraStructure.map(function(bluePrint){
       var curRow = [];
       while(bluePrint--){
@@ -57,12 +58,9 @@ define(['./constants'], function(constants){
       this.rowStructure.push(curRow);
     }.bind(this));
 
-    console.log(this.rowStructure)
-
   }
 
   Tetra.prototype.calculateValue = function(){
-    console.log('caclulateVAl!!');
     var val = 0;
     var base = 0;
     switch(this.type){
@@ -74,7 +72,7 @@ define(['./constants'], function(constants){
             for(var i=0; i<this.rowStructure[0].length; ++i){
               val += (this.rowStructure[0][i] * base);
               base = base >> 1;
-            };
+            }
             // next row
             base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-2);
             for(var i=0; i<this.rowStructure[1].length; ++i){
@@ -82,22 +80,97 @@ define(['./constants'], function(constants){
               base = base >> 1;
             }
             return val;
-          break;
-          case 1:
-            // 0 1
-          break;
-          case 2:
-            // 0 2
-          break;
-          case 3:
-            // 0 3
-          break;
+            break;
           default:
             throw new Error("Invalid rotationalState in Tetra.calculateValue");
         }
-      break;
-        default:
-          throw new Error("Invalid type in Tetra.calculateValue");
+        break;
+      case 1:
+        switch(this.rotationalState){
+          case 0:
+            // bottom row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[0].length; ++i){
+              val += (this.rowStructure[0][i] * base);
+              base = base >> 1;
+            }
+            return val;
+            break;
+            default:
+              throw new Error("Invalid rotationalState in Tetra.calculateValue");
+        }
+        break;
+      case 2:
+        switch(this.rotationalState){
+          case 0:
+            // bottom row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[0].length; ++i){
+              val += (this.rowStructure[0][i] * base);
+              base = base >> 1;
+            }
+            // next row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[1].length; ++i){
+              val += (this.rowStructure[1][i] * base);
+              base = base >> 1;
+            }
+            return val;
+            break;
+            default:
+              throw new Error("Invalid rotationalState in Tetra.calculateValue");
+        }
+        break;
+      case 3:
+        switch(this.rotationalState){
+          case 0:
+            // bottom row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[0].length; ++i){
+              val += (this.rowStructure[0][i] * base);
+              base = base >> 1;
+            }
+            // next row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[1].length; ++i){
+              val += (this.rowStructure[1][i] * base);
+              base = base >> 1;
+            }
+            // next row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-2);
+            for(var i=0; i<this.rowStructure[2].length; ++i){
+              val += (this.rowStructure[2][i] * base);
+              base = base >> 1;
+            }
+            return val;
+            break;
+            default:
+              throw new Error("Invalid rotationalState in Tetra.calculateValue");
+        }
+        break;
+      case 4:
+        switch(this.rotationalState){
+          case 0:
+            // bottom row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[0].length; ++i){
+              val += (this.rowStructure[0][i] * base);
+              base = base >> 1;
+            }
+            // next row
+            base = Math.pow(2, constants.GRID_WIDTH-this.leftMostLocation-1);
+            for(var i=0; i<this.rowStructure[1].length; ++i){
+              val += (this.rowStructure[1][i] * base);
+              base = base >> 1;
+            }
+            return val;
+            break;
+            default:
+              throw new Error("Invalid rotationalState in Tetra.calculateValue");
+        }
+        break;
+      default:
+        throw new Error("Invalid type in Tetra.calculateValue");
     }
   }
 

@@ -89,9 +89,12 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
     leftKey.onDown.add(shiftLeft, this);
     game.input.keyboard.removeKeyCapture(Phaser.Keyboard.LEFT);
 
-    spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    spaceKey.onDown.add(rotate, this);
-    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.SPACEBAR);
+
+    // DISABLED ROTATING UNTIL PATCHED
+
+    //spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    //spaceKey.onDown.add(rotate, this);
+    //game.input.keyboard.removeKeyCapture(Phaser.Keyboard.SPACEBAR);
 
     // Background
     var backgroundLayer = game.add.group();
@@ -120,7 +123,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
     console.log('creating tetra');
     // Model tetra
     var leftMostLocation = parseInt(constants.GRID_WIDTH/2);//Always the center
-    _currentTetra = new Tetra(0, 0);
+    _currentTetra = new Tetra(undefined, 0);
     _currentTetra.leftMostLocation = leftMostLocation;
     // Create a random set of numbers for the empty tetra
     _currentTetra.initializeVirtualModel();
@@ -474,7 +477,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
         currentTetra.create(constants.GRID_OFFSET+constants.GRID_SIZE*x, constants.GRID_OFFSET+constants.GRID_SIZE*y, sprite);
         x = 1;
         y = -3;
-        sprite = _currentTetra.rowStructure[2][1] ? 'one' : 'zero';
+        sprite = _currentTetra.rowStructure[2][0] ? 'one' : 'zero';
         currentTetra.create(constants.GRID_OFFSET+constants.GRID_SIZE*x, constants.GRID_OFFSET+constants.GRID_SIZE*y, sprite);
         switch(rotationalState){
           case 0:

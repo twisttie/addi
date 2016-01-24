@@ -30,7 +30,6 @@ define(['./constants'], function(constants){
     if(typeof numToAdd !== 'number'){
       throw new Error("bruh");
     }
-    console.log(this.state + " + " + numToAdd + " % " + this.overflow)
     this.state = (this.state + numToAdd) % this.overflow;
   }
 
