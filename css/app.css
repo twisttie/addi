@@ -1,0 +1,21 @@
+
+#rendered-game {
+  position: relative;
+  display: block;
+  margin: 0px auto;
+  width: 1000px;
+  height: 100%;
+  background: url('../img/assets/bg.gif');
+}
+
+canvas {
+  margin: 0 auto !important;
+}
+
+.side_bar {
+  width: 250px;
+  background: rgba(0,0,0,.3);
+  height: 100%;
+  display: block;
+  position: absolute;
+}
