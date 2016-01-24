@@ -10,7 +10,8 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
       preload: preload,
       create: create,
       update: update
-    }
+    },
+    true
   );
 
   /**
@@ -62,6 +63,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
    * @return {void}
    */
   function preload(){
+    console.log('Ready...');
 
     game.load.image('one', 'img/assets/sprites/one.png');
     game.load.image('zero', 'img/assets/sprites/zero.png');
@@ -76,6 +78,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
    * @return {void}
    */
   function create(){
+    console.log('Set...');
     var x, y;
     // Enable physics engine
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -96,11 +99,6 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
     //spaceKey.onDown.add(rotate, this);
     //game.input.keyboard.removeKeyCapture(Phaser.Keyboard.SPACEBAR);
 
-    // Background
-    var backgroundLayer = game.add.group();
-    backgroundLayer.z = 0;
-    backgroundLayer.add(new Phaser.Sprite(game, 0, 0, 'background'));
-
     // Bottom Bar Model
     _bottomBar = new BottomBar(8);
 
@@ -116,6 +114,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
 
     // Create the tetra piece
     createTetra();
+    console.log('Go!');
 
   }
 
