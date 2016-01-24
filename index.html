@@ -23,11 +23,14 @@
   <link rel="stylesheet" href="css/app.css" type="text/css" />
 </head>
 <body>
+  <div class="opening left left_side_bar"></div>
+  <div class="opening right right_side_bar"></div>
+
   <div id="rendered-game">
-    <div class="side_bar" style="left:0;">
+    <div class="side_bar left">
     </div>
     <!-- Addi is rendered into this container -->
-    <div class="side_bar" style="right:0;">
+    <div class="side_bar right">
     </div>
   </div>
   <script data-main="js/config" src="js/libs/require.js"></script>
@@ -35,9 +38,24 @@
     require(['config'], function(){
       require(['jquery', 'pulse', 'game'], function($, Pulse, Addi){
         $(function(){
-          // Disable native key events
-          window.onkeydown = function(e) { 
-              return !(e.keyCode == 32 || e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40);
+          window.onkeydown = function(e){
+            if(e.keyCode === 32){
+              // exit splash state
+              document.querySelector('.left_side_bar').style.marginLeft = '-50%';
+              document.querySelector('.right_side_bar').style.marginRight = '-50%';
+              if(window.PAUSED !== undefined){
+                setTimeout(function(){
+                  window.PAUSED = false;
+                }, 1000);
+              }else{
+                throw new Error('PAUSED was undefined');
+              }
+            }
+            // Disable other native key events
+            return !(e.keyCode === 37 ||
+                     e.keyCode === 38 || 
+                     e.keyCode === 39 || 
+                     e.keyCode === 40);
           }
         });
       });

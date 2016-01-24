@@ -48,8 +48,6 @@ define(['./constants'], function(constants){
 
     var tetraStructure = constants.BLOCKS_PER_ROW[_type];
 
-    console.log(tetraStructure);
-
     tetraStructure.map(function(bluePrint){
       var curRow = [];
       while(bluePrint--){

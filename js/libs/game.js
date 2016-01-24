@@ -23,6 +23,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
 
   var FPS = 100;
   var frame = 0;
+  window.PAUSED = true;
 
   /**
    * Global references to OBJECTS.
@@ -38,7 +39,7 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
     FIRED: false // Handles when the user is allowed to have their input read
   }
 
-  var fallingSpeed = 1;
+  var fallingSpeed = 2;
 
   var startBitRotate = false;
   var rotateBits = 0;
@@ -119,7 +120,6 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
   }
 
   function createTetra(){
-    console.log('creating tetra');
     // Model tetra
     var leftMostLocation = parseInt(constants.GRID_WIDTH/2);//Always the center
     _currentTetra = new Tetra(undefined, 0);
@@ -145,9 +145,13 @@ define(['./phaser', './constants', './tetra', './bottombar'], function(Phaser, c
    * @return {void}
    */
   function update(){
+    if(window.PAUSED === true){
+      return;
+    }
+
     var speed = fallingSpeed;
     if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-      speed = fallingSpeed*10;
+      speed = fallingSpeed*7.5;
     }
 
     // Test for collision
